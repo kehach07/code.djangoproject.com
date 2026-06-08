@@ -1,0 +1,333 @@
+/* ==========================================================================
+   CROSS-PORTAL DESIGN TOKENS (LIGHT STATE DEFAULT)
+   ========================================================================== */
+:root, 
+html[data-theme="light"] {
+    --body-fg: #0C3C26;
+    --body-bg: #f8f8f8;
+    --logo-bg: #ffffff;
+    --menu: #ffffff;
+    --white-color: #ffffff;
+
+    --primary: #44B78B;
+    --primary-accent: #2B8C67;
+    --secondary: #20AA76;
+    --secondary-accent: #C9F0DD;
+
+    --link-color: #20AA76;
+    --sidebar-bg: #f8f8f8;
+    --hairline-color: #CFE3DC;
+    --dark-hairline-color: #859D94;
+
+    --code-bg: #f8f8f8;
+    --code-fg: #0C4B33;
+    --code-border: #EAEAEA;
+    --selection: #C9F0DD;
+}
+
+/* ==========================================================================
+   CROSS-PORTAL DESIGN TOKENS (DARK STATE OVERRIDES)
+   ========================================================================== */
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --body-fg: #C1CAD2;
+    --body-bg: #121814;
+    --logo-bg: #0e1117;
+    --menu: #ffffff;
+    --white-color: #0e1117;
+
+    --text-l10: #93D7B7;
+    --text-l20: #C9F0DD;
+    --text-light: #798780;
+
+    --primary: #44B78B;
+    --primary-accent: #93D7B7;
+    --secondary: #20AA76;
+    --secondary-accent: #44B78B;
+
+    --link-color: #93D7B7;
+    --sidebar-bg: #0e1117;
+    --hairline-color: #2b3a32;
+    --dark-hairline-color: #616c67;
+
+    --code-bg: #0e1117;
+    --code-fg: #f8f8f8;
+    --code-border: #2b3a32;
+    --selection: #0C4B33;
+}
+
+/* Preference synchronization fallback matrix */
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] {
+        color-scheme: dark;
+        --body-fg: #C1CAD2;
+        --body-bg: #121814;
+        --logo-bg: #0e1117;
+        --menu: #ffffff;
+        --white-color: #0e1117;
+        --primary: #44B78B;
+        --primary-accent: #93D7B7;
+        --secondary: #20AA76;
+        --secondary-accent: #44B78B;
+        --link-color: #93D7B7;
+        --sidebar-bg: #0e1117;
+        --hairline-color: #2b3a32;
+        --dark-hairline-color: #616c67;
+        --code-bg: #0e1117;
+        --code-fg: #f8f8f8;
+        --code-border: #2b3a32;
+        --selection: #0C4B33;
+    }
+}
+
+/* ==========================================================================
+   DYNAMIC MAPPINGS FOR TRAC COMPONENT SURFACE LAYERS
+   ========================================================================== */
+body {
+    background: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.full-width.container {
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    border-bottom: 1px solid #ddd;
+    background: var(--white-color) !important;
+}
+[role="main"], #main, .ticket, #content, .wiki, #ticket, table.wikiTable, div.message {
+    background: var(--white-color) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+a, #ticket h2 :link {
+    color: var(--link-color);
+}
+a:hover, a:active, a:focus, #ticket h2 :link:hover {
+    color: var(--primary);
+}
+
+h1, h2, h3, h4, h5, h6, legend {
+    color: var(--body-fg) !important;
+}
+[role="main"] h1, [role="main"] h2, [role="main"] h3 {
+    color: var(--body-fg) !important;
+}
+
+code, pre, tt, .highlight, pre.literal-block, .inlinecode, div.code, table.code {
+    background: var(--code-bg) !important;
+    color: var(--code-fg) !important;
+    border: 1px solid var(--code-border) !important;
+}
+
+/* ==========================================================================
+   HEADER ROW ALIGNMENT - EDGE-TO-EDGE FLUID ENGINE
+   ========================================================================== */
+#top {
+    width: 100% !important;
+    background: #0C4B33 !important; /* Locks background color seamlessly */
+}
+
+/* Expand layout width parameters cleanly across high resolution viewports */
+#top .container {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: none !important;      /* Removes the 1400px restriction */
+    padding-left: 20px !important;   /* Matches branding spacing thresholds */
+    padding-right: 20px !important;
+    box-sizing: border-box !important;
+}
+
+#top nav {
+    margin-left: auto !important;
+    display: flex !important;
+    float: none !important;
+    align-items: center !important;
+}
+
+#top nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+#top nav ul li {
+    float: none !important;
+    border-top: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+#top nav ul li a {
+    padding: 20px 10px !important;
+    white-space: nowrap !important;
+}
+
+.header-tools-inline {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 14px !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    overflow: visible !important;
+}
+
+/* ==========================================================================
+   TOGGLE SYSTEM RENDERING OPERATORS
+   ========================================================================== */
+.theme-toggle, 
+button.theme-toggle, 
+#top .theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important; 
+    border: 1px solid transparent !important; 
+    box-shadow: none !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 0px !important; 
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    box-sizing: border-box !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    outline: none !important;
+    transition: background-color 0.1s ease, border-color 0.1s ease !important;
+}
+
+.theme-toggle:hover,
+button.theme-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; /* Crisp flat white square hover outline */
+}
+
+.theme-toggle:focus {
+    border: 1px solid #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95) !important;
+}
+
+.theme-toggle svg, 
+#top .theme-toggle svg,
+.theme-toggle svg.theme-icon-when-auto, 
+.theme-toggle svg.theme-icon-when-dark, 
+.theme-toggle svg.theme-icon-when-light {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    fill: #ffffff !important;
+    color: #0c4b33 !important;
+    stroke: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    display: none;
+    pointer-events: none !important;
+}
+
+html[data-theme="auto"] .theme-toggle svg.theme-icon-when-auto { display: block !important; }
+html[data-theme="dark"] .theme-toggle svg.theme-icon-when-dark { display: block !important; }
+html[data-theme="light"] .theme-toggle svg.theme-icon-when-light { display: block !important; }
+
+.theme-toggle .visually-hidden {
+    display: none !important;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+div[role="main"] #main fieldset {
+    background: var(--body-bg) !important;
+    border: 1px solid #CFE3DC;
+}
+/* ==========================================================================
+   FORM CONTROLS & INPUT ELEMENTS - CROSS-THEME ALIGNMENT MATRIX
+   ========================================================================== */
+
+/* Target form inputs inside the main container layout wrapper */
+div[role="main"] #main form input[type="text"],
+div[role="main"] #main form input[type="search"],
+div[role="main"] #main form input[type="email"],
+div[role="main"] #main form input[type="password"],
+div[role="main"] #main form textarea,
+div[role="main"] #main form select,
+#propertyform table.trac-properties td input[type="text"],
+#propertyform table.trac-properties td textarea {
+    /* Fluid structure & font tracking matching djangoproject layout scales */
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", sans-serif !important;
+    font-size: 14px !important;
+    font-size: 1.4rem !important;
+    line-height: 1.5 !important;
+    box-sizing: border-box !important;
+    
+    /* Responsive structural sizing definitions */
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 8px 12px !important;
+    margin: 6px 0 !important;
+    border-radius: 4px !important;
+    
+    /* Dynamic property lookups linked straight to your design variables matrix */
+    background-color: var(--white-color) !important; /* #ffffff in Light Mode / #0e1117 in Dark Mode */
+    color: var(--body-fg) !important;                /* #0C3C26 in Light Mode / #C1CAD2 in Dark Mode */
+    border: 1px solid var(--hairline-color) !important; /* #CFE3DC in Light Mode / #2b3a32 in Dark Mode */
+    
+    /* Clear native browser input rendering behavior overrides */
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: border-color 0.15s ease-in-out, background-color 0.15s ease-in-out !important;
+}
+
+/* Explicit placeholder text transparency matrix configuration */
+div[role="main"] #main form ::placeholder {
+    color: var(--text-light, #798780) !important;
+    opacity: 0.7 !important;
+}
+
+/* Focused input state framework configuration */
+div[role="main"] #main form input:focus,
+div[role="main"] #main form textarea:focus,
+div[role="main"] #main form select:focus,
+#propertyform table.trac-properties td input:focus,
+#propertyform table.trac-properties td textarea:focus {
+    border-color: var(--secondary, #20AA76) !important; /* Highlights frame border line with active Django green */
+    background-color: var(--white-color) !important;
+}
+
+/* Disabled input field styling rules */
+div[role="main"] #main form input:disabled,
+div[role="main"] #main form textarea:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background-color: var(--code-bg, #f8f8f8) !important;
+}
