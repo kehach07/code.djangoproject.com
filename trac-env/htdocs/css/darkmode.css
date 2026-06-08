@@ -331,3 +331,143 @@ div[role="main"] #main form textarea:disabled {
     cursor: not-allowed !important;
     background-color: var(--code-bg, #f8f8f8) !important;
 }
+/* ==========================================================================
+   TABLES & QUERY LISTINGS - CROSS-THEME ALIGNMENT MATRIX
+   ========================================================================== */
+
+/* Target all Trac database tables, ticket lists, and query results */
+table.listing,
+table.tickets,
+table.wikiTable,
+.trac-query-results {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    background-color: var(--white-color) !important;
+    color: var(--body-fg) !important;
+    border: 1px solid var(--hairline-color) !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Table Header Strip Alignment */
+table.listing thead th,
+table.tickets thead th,
+.tickets thead tr.trac-query-heading th {
+    background: var(--secondary-accent, #C9F0DD) !important;
+    color: #0C3C26 !important; /* Keep text dark green for optimal contrast on the light mint banner */
+    font-weight: 700 !important;
+    padding: 10px 12px !important;
+    border-bottom: 2px solid var(--hairline-color) !important;
+    text-align: left !important;
+}
+
+/* Table Body Cells and Rows normalization */
+table.listing tbody tr,
+table.tickets tbody tr,
+.tickets tbody tr {
+    background-color: var(--white-color) !important;
+    color: var(--body-fg) !important;
+    border-top: 1px solid var(--hairline-color) !important;
+    border-bottom: 1px solid var(--hairline-color) !important;
+}
+
+/* Fix for the zebra-striping background color visible in your screenshot */
+table.listing tbody tr.even,
+table.tickets tbody tr.even,
+.tickets tbody tr.even,
+table.listing tbody tr:nth-of-type(even) {
+    background-color: var(--body-bg) !important; /* Alternates using the deeper background token */
+}
+
+/* Table Data Cells Padding */
+table.listing td,
+table.tickets td,
+.tickets td,
+td.trac-colspan {
+    padding: 10px 12px !important;
+    color: var(--body-fg) !important;
+    border-left: 1px solid var(--hairline-color) !important;
+    border-right: 1px solid var(--hairline-color) !important;
+}
+
+table.listing tbody tr:hover td,
+table.tickets tbody tr:hover td,
+.tickets tbody tr:hover td {
+    background: rgba(68, 183, 139, 0.15) !important; 
+    color: var(--body-fg) !important;
+}
+/* Force the active tab list container to black */
+div[role="main"] #mainnav ul li.active {
+    background-color: var(--primary, #44B78B) !important;
+    color: #000000 !important;
+}
+
+/* Fix for the active anchor link text layout shown in your devtools view */
+div[role="main"] #mainnav ul li.active a,
+div[role="main"] #mainnav ul li.active a:link,
+div[role="main"] #mainnav ul li.active a:visited,
+#mainnav ul li.active a {
+    color: #000000 !important;        /* Pure high-contrast black text */
+    background: none !important;
+    background-color: transparent !important;
+    font-weight: 500 !important;
+    text-shadow: none !important;
+}
+
+/* Smooth hover transition fallback matrix for surrounding tabs */
+div[role="main"] #mainnav ul li:hover a {
+    color: #000000 !important;
+}
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+button,
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+.inlinebuttons .trac-button {
+    color: #000000 !important;      /* Forces pure black typography text */
+    text-shadow: none !important;    /* Removes default gray blur artifacts */
+    font-size: inherit;              /* Strictly retains the native size scale */
+}
+
+/* Ensure font tracking scales perfectly on hover profiles */
+input[type="button"]:hover, 
+input[type="submit"]:hover, 
+input[type="reset"]:hover, 
+button:hover,
+.trac-button:hover,
+.inlinebuttons input:hover,
+.inlinebuttons .trac-button:hover {
+    color: #000000 !important;
+    text-shadow: none !important;
+}
+div.trac-resizable div.trac-grip,
+div.trac-grip,
+.trac-grip {
+    /* Explicitly lock layout height and cursor behaviors */
+    height: 6px !important;
+    cursor: s-resize !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+
+    /* Rebind design tokens dynamically to capture theme attribute toggles */
+    color: var(--body-bg) !important;       /* Matches background canvas */
+    border: 1px solid var(--hairline-color) !important; /* Blends border seamlessly */
+    border-top-width: 0 !important;                     /* Removes double-border stacking */
+    
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Dark Theme specific optimization trace:
+   Inverts the tiny embedded grip background image (.png) dots so they stay high-contrast
+*/
+html[data-theme="dark"] div.trac-grip,
+html[data-theme="auto"] div.trac-grip {
+    filter: invert(0.8) contrast(1.2);
+}
+
+/* Light mode explicit fallback normalization reset */
+html[data-theme="light"] div.trac-grip {
+    filter: none !important;
+}
