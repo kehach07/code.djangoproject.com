@@ -471,3 +471,126 @@ html[data-theme="auto"] div.trac-grip {
 html[data-theme="light"] div.trac-grip {
     filter: none !important;
 }
+/* ==========================================================================
+   UNIVERSAL COMPONENT SURFACE RESOLUTION MATRICES
+   ========================================================================== */
+
+/* 1. Force the main content containers to blend cleanly into the main canvas background */
+body.mdzr-boxshadow,
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow [role="main"],
+body.mdzr-boxshadow .sidebar-right [role="main"],
+body.mdzr-boxshadow .container.sidebar-right,
+body.mdzr-boxshadow .container.full-width,
+body.mdzr-boxshadow div.container.sidebar-right,
+body.mdzr-boxshadow div.container.full-width,
+body.mdzr-boxshadow #banner {
+    /* Dynamically evaluates straight to #f8f8f8 in light mode and #121814 in dark mode */
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    
+    /* CRITICAL: Strips both the 1200px fake side margin shadow AND the legacy multi-drop pixel panels */
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 2. Sync the right-hand complementary sidebar context gutter layout */
+[role="complementary"],
+.sidebar-right [role="complementary"] {
+    background-color: var(--body-bg) !important;
+    background: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+}
+
+/* 3. Re-align the fluid full-width border components mapping */
+.full-width.container {
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    border-bottom: 1px solid var(--hairline-color) !important;
+    background: var(--body-bg) !important;
+}
+/* ==========================================================================
+   CREATE TICKET SYSTEM LAYOUT STABILIZATION MATRIX
+   ========================================================================== */
+
+/* 1. Force the parent form wrappers, sub-tickets cards, and formatting panels 
+      to match your clean edge-to-edge body canvas background universally */
+div[role="main"] #main fieldset,
+#propertyform,
+#propertyform fieldset,
+.ticket #ticketbox,
+#content.ticket #propertyform,
+div.container.full-width form#propertyform,
+#content form fieldset,
+html body.mdzr-boxshadow form fieldset {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    border: 1px solid var(--hairline-color) !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    padding: 6px 10px !important;
+}
+
+/* 2. Target the "I have files to attach to this ticket" row block explicitly 
+      to sweep out its custom hardcoded dark container properties */
+#content form div.field,
+#content form .field,
+form label[for="attachment"],
+html body.mdzr-boxshadow form div.field,
+#propertyform + label,
+#propertyform + div {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+}
+
+/* 3. Keep the text input textareas and field labels readable against the matched track background */
+#propertyform fieldset legend,
+#propertyform table.trac-properties th,
+#propertyform label {
+    color: var(--body-fg) !important;
+    background: transparent !important;
+}
+/* ==========================================================================
+   FINAL INTERFACE CANVAS SPACING CLEANUP
+   ========================================================================== */
+
+/* 1. Target the bottom extra margin rows and empty layout spacing wrappers */
+#content,
+.ticket,
+#main,
+div[role="main"],
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow #content,
+#content.ticket,
+div.container.full-width,
+div.container.sidebar-right {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+/* 2. Clear any rogue hardcoded dark background values on trailing paragraphs or notes */
+#content p.help,
+#content .trac-help,
+.trac-help,
+#main .backtotop,
+a.backtotop {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--text-light, #798780) !important;
+}
+
+/* 3. Sanitize the base html canvas track for unassigned lower workspace limits */
+html, 
+html[data-theme] {
+    background-color: var(--body-bg) !important;
+}
