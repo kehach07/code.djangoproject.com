@@ -23,6 +23,7 @@ html[data-theme="light"] {
     --code-fg: #0C4B33;
     --code-border: #EAEAEA;
     --selection: #C9F0DD;
+    --darkgreen: #0C4B33;
 }
 
 /* ==========================================================================
@@ -54,6 +55,7 @@ html[data-theme="dark"] {
     --code-fg: #f8f8f8;
     --code-border: #2b3a32;
     --selection: #0C4B33;
+    --darkgreen: #0C4B33;
 }
 
 /* Preference synchronization fallback matrix */
@@ -77,6 +79,7 @@ html[data-theme="dark"] {
         --code-fg: #f8f8f8;
         --code-border: #2b3a32;
         --selection: #0C4B33;
+        --darkgreen: #0C4B33;
     }
 }
 
@@ -593,4 +596,227 @@ a.backtotop {
 html, 
 html[data-theme] {
     background-color: var(--body-bg) !important;
+}
+/* ==========================================================================
+   TICKET PROPERTY MATRIX TEXT CONTRAST MATRICES
+   ========================================================================== */
+
+/* 1. Force the inner metadata th and missing status fields to adapt to the theme text token */
+#ticket table.properties > tbody > tr th,
+#ticket table.properties > tbody > tr th.missing,
+.ticket table.properties tbody tr th,
+#propertyform table.trac-properties td label,
+table.properties th {
+    /* Dynamically evaluates straight to #0C3C26 in light mode / #C1CAD2 in dark mode */
+    color: var(--body-fg) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 2. Target the description header, inline text tokens, and form contextual values */
+#ticket div.description h2,
+#ticket .properties td,
+.ticket table.properties td,
+#content.ticket #ticketbox h1,
+#ticket h1, #ticket h2 {
+    color: var(--body-fg) !important;
+}
+
+/* 3. Sync any static informational preview helper blocks text */
+#ticketbox .date,
+#ticketbox .author,
+.ticket .date {
+    color: var(--text-light, #798780) !important;
+}
+/* ==========================================================================
+   STANDARD FORM BUTTONS LIFE-CYCLE (PREVIEW / CREATE TICKET)
+   ========================================================================== */
+
+/* Target all standard form element controls EXCLUDING the theme toggle button */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    
+    /* Steady focus/active background colors linked to your primary green token */
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #44B78B) !important;
+        background-color: var(--primary, #44B78B) !important;
+        color: #000000 !important; /* Retains high-contrast black text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Explicit fallback capture for Trac's custom submission disabling behavior class */
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) !important;
+    background-color: var(--primary, #44B78B) !important;
+    color: #000000 !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON ENGINE - ISOLATED WHITE BORDER MATRIX
+   ========================================================================== */
+
+/* Base container rule ensuring complete transparency */
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* DEFEATS THE BLACK FLASH: Forces transparency even when actively clicked or focused */
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keeps the pure crisp white border glowing when clicked/held */
+    border: 1px solid #ffffff !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover & Active Display States - Matches your image reference precisely */
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; /* Pure white outline frame */
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* ==========================================================================
+   STANDARD FORM BUTTONS LIFE-CYCLE (PREVIEW / CREATE TICKET)
+   ========================================================================== */
+
+/* Target all standard form element controls EXCLUDING the theme toggle button */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    
+    /* Steady focus/active background colors linked to your primary green token */
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #0C4B33) !important;
+        background-color: var(--primary, #0C4B33) !important;
+        color: #000000 !important; /* Retains high-contrast black text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Explicit fallback capture for Trac's custom submission disabling behavior class */
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) !important;
+    background-color: var(--primary, #44B78B) !important;
+    color: #000000 !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON ENGINE - ISOLATED WHITE BORDER MATRIX
+   ========================================================================== */
+
+/* Base container rule ensuring complete transparency */
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* DEFEATS THE BLACK FLASH: Forces transparency even when actively clicked or focused */
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keeps the pure crisp white border glowing when clicked/held */
+    border: 1px solid #ffffff !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover & Active Display States - Matches your image reference precisely */
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; /* Pure white outline frame */
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* ==========================================================================
+   BUTTON INTERACTION STATES & THEME TOGGLE ACTIVE STATE (FIXED)
+   ========================================================================== */
+
+/* 1. Standard Action Buttons (Preview, Create ticket, etc.) Lifecycle */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+button,
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"] {
+    
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--darkgreen, #0C4B33) !important;
+        background-color: var(--darkgreen, #0C4B33) !important;
+        color: #000000 !important; /* Retains high-contrast black typography text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* 2. THEME TOGGLE ACTIVE ENGINE - Replicating image_5bf6de.png exactly */
+.theme-toggle, 
+button.theme-toggle, 
+#top .theme-toggle {
+    /* Base button parameters remain clean and transparent */
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+
+    /* When hovered, focused, or actively clicked, inject the crisp white square box frame */
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: rgba(255, 255, 255, 0.12) !important; /* Subtle inner highlight */
+        border: 1px solid #ffffff !important;                   /* Crisp flat white square outline */
+        outline: none !important;
+        box-shadow: none !important;
+    }
 }
