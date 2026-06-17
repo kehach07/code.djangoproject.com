@@ -24,6 +24,9 @@ html[data-theme="light"] {
     --code-border: #EAEAEA;
     --selection: #C9F0DD;
     --darkgreen: #0C4B33;
+    --formcss: #f7f7f0;
+    --admincss: #f7f7f0;
+    --code-button: #20AA76;
 }
 
 /* ==========================================================================
@@ -56,6 +59,9 @@ html[data-theme="dark"] {
     --code-border: #2b3a32;
     --selection: #0C4B33;
     --darkgreen: #0C4B33;
+    --formcss: #0e1117;
+    --admincss: #0e1117;
+    --code-button: #20AA76;
 }
 
 /* Preference synchronization fallback matrix */
@@ -80,6 +86,9 @@ html[data-theme="dark"] {
         --code-border: #2b3a32;
         --selection: #0C4B33;
         --darkgreen: #0C4B33;
+        --formcss: #0e1117;
+        --admincss: #0e1117;
+        --code-button: #20AA76;
     }
 }
 
@@ -819,4 +828,262 @@ button.theme-toggle,
         outline: none !important;
         box-shadow: none !important;
     }
+}
+/* ==========================================================================
+   WIKI EDIT INFORMATION & SYSTEM DIFF ENTRIES (THEME ISOLATED ENGINE)
+   ========================================================================== */
+
+/* 1. DARK MODE & AUTO-DARK ONLY: Transform blocks to match dark canvas depth */
+html[data-theme="dark"] body.mdzr-boxshadow,
+html[data-theme="dark"] table#info.trac-scroll,
+html[data-theme="dark"] table#info,
+html[data-theme="dark"] #info tbody tr,
+html[data-theme="dark"] #info th,
+html[data-theme="dark"] #info td {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .diff li.entry,
+html[data-theme="dark"] li.entry,
+html[data-theme="dark"] div#preview.wikipage .diff {
+    background: var(--white-color) !important; /* #0e1117 sheet block container */
+    background-color: var(--white-color) !important;
+    border: 1px solid var(--hairline-color) !important;
+    color: var(--body-fg) !important;
+    box-shadow: none !important;
+}
+
+/* 2. LIGHT MODE PROTECTION: Hard-locks Trac's default layout properties */
+html[data-theme="light"] table#info.trac-scroll,
+html[data-theme="light"] table#info,
+html[data-theme="light"] #info tbody tr,
+html[data-theme="light"] #info td {
+    background: #f7f7f0 !important; /* Preserves crisp legacy light off-white shade */
+    color: #0C3C26 !important;
+    border-color: #d7d7d7 !important;
+}
+
+html[data-theme="light"] #info th {
+    background: #f7f7f0 !important;
+    color: #0C3C26 !important;
+}
+
+html[data-theme="light"] .diff li.entry,
+html[data-theme="light"] li.entry {
+    background: #ffffff !important; /* Pristine bright white card canvas background */
+    border: 1px solid #d7d7d7 !important;
+    color: #0C3C26 !important;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05) !important;
+}
+/* ==========================================================================
+   WIKI PREVIEW MATRIX OVERRIDE (DARK MODE SPECIFIC - LIGHT MODE PROTECTED)
+   ========================================================================== */
+
+/* 1. Force the preview wrapper nodes to adapt directly to dark mode token variables */
+html[data-theme="dark"] div#preview.wikipage,
+html[data-theme="dark"] #preview.wikipage .trac-content,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft,
+html[data-theme="dark"] body.mdzr-boxshadow #preview.wikipage {
+    /* Seamlessly blends into the dark page backdrop (#121814) */
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border: 1px solid var(--hairline-color) !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    border-radius: 4px !important;
+    padding: 20px !important;
+}
+
+/* 2. Sanitize embedded text strings and inner draft elements inside the dark preview box */
+html[data-theme="dark"] #preview.wikipage .trac-content p,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft p {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--body-fg) !important;
+}
+#prefs {
+    background: var(--formcss, #0e1117) !important;
+    border: 1px solid #d4d4d4;
+    border-radius: 11px;
+    box-shadow: .1em .3em .5em 0 #d4d4d4;
+    float: right;
+    font-size: .9em;
+    padding: .8em;
+    position: relative;
+    margin: 0 1em 1em;
+}
+/* ==========================================================================
+   ADMINISTRATION WORKSPACE NAVIGATION GUTTER (SYSTEM AWARE)
+   ========================================================================== */
+
+/* 1. UNIVERSAL COMPONENT STRUCTURE (Applies to all modes safely) */
+div#tabs, 
+#content.admin div#tabs {
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure secondary sub-category labels remain cleanly spaced */
+div#tabs ul li a {
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    display: block;
+}
+
+/* 2. DARK MODE & SYSTEM AUTO-DARK CONDITION ENGINE */
+html[data-theme="dark"] div#tabs,
+html[data-theme="dark"] #content.admin div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] div#tabs,
+    html[data-theme="auto"] #content.admin div#tabs {
+        /* Syncs with the deep panel menu container block variable (#0e1117) */
+        background: var(--white-color) !important;
+        background-color: var(--white-color) !important;
+        border: 1px solid var(--hairline-color) !important;
+        box-shadow: none !important;
+        
+        /* Clear out the unstyled text categories heading blocks */
+        li {
+            color: var(--body-fg) !important;
+            background: transparent !important;
+        }
+        
+        /* Muted green for inactive links in dark state */
+        ul li a {
+            color: var(--text-l10, #93D7B7) !important;
+        }
+        
+        /* Active structural navigation item selection highlighted block state */
+        ul li.active {
+            background-color: rgba(68, 183, 139, 0.15) !important;
+            border-radius: 4px;
+            
+            a {
+                color: var(--primary, #44B78B) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}
+
+/* 3. EXPLICIT LIGHT MODE PROTECTION SYSTEM (Preserves legacy defaults untouched) */
+html[data-theme="light"] div#tabs,
+html[data-theme="light"] #content.admin div#tabs {
+    background: #f7f7f0 !important; /* Locks default legacy off-white tone */
+    border: 1px solid #d4d4d4 !important;
+    box-shadow: none !important;
+}
+html[data-theme="light"] div#tabs ul li.active a {
+    color: inherit !important;
+}
+#tabs {
+    background: var(--admincss, #f7f7f0);
+    border: 1px solid #d4d4d4;
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    /* box-shadow: .1em .3em .5em 0 #eee; */
+}
+div[role="main"] #main form input:disabled, div[role="main"] #main form textarea:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background-color: var(--code-button, #f8f8f8) !important;
+}
+/* ==========================================================================
+   DYNAMIC TABS AND PREFERENCES NAVIGATION (ALL MODES OPTIMIZED)
+   ========================================================================== */
+
+/* 1. UNIVERSAL RULES - Structural definitions safely applied across all formats */
+#tabs, 
+div#tabs,
+.full-width.container #tabs,
+#content.prefs #tabs {
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure the layout labels and child nodes reset text inheritance correctly */
+#tabs li, 
+#tabs ul li a {
+    text-decoration: none !important;
+}
+
+/* 2. DARK MODE & AUTO SYSTEM SPECIFIC RULES */
+html[data-theme="dark"] #tabs,
+html[data-theme="dark"] div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] #tabs,
+    html[data-theme="auto"] div#tabs {
+        /* Syncs beautifully with your dark canvas token matrix */
+        background: var(--white-color) !important;
+        background-color: var(--white-color) !important;
+        border: 1px solid var(--hairline-color) !important;
+        box-shadow: none !important;
+
+        li {
+            color: var(--body-fg) !important;
+            background: transparent !important;
+        }
+
+        /* Set clean contrast for unselected list items */
+        li a {
+            color: var(--text-l10, #93D7B7) !important;
+        }
+
+        /* Style the active tab element indicator box */
+        li.active {
+            background-color: rgba(68, 183, 139, 0.15) !important;
+            border-radius: 4px;
+
+            a {
+                color: var(--primary, #44B78B) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}
+
+/* 3. LIGHT MODE PROTECTION FALLBACKS */
+html[data-theme="light"] #tabs,
+html[data-theme="light"] div#tabs {
+    background: var(--admincss, #f7f7f0) !important;
+    border: 1px solid #d4d4d4 !important;
+    box-shadow: none !important;
+}
+
+
+/* ==========================================================================
+   DISABLED INTERFACE ELEMENT OVERRIDES (ALL MODES AWARE)
+   ========================================================================== */
+div[role="main"] #main form input:disabled, 
+div[role="main"] #main form textarea:disabled,
+#main form select:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    
+    /* Dynamic evaluation across your target environments */
+    background-color: var(--code-bg, #0e1117) !important;
+    color: var(--text-light, #798780) !important;
+    border: 1px solid var(--hairline-color) !important;
+}
+
+/* Retain classic light form rules explicitly */
+html[data-theme="light"] div[role="main"] #main form input:disabled, 
+html[data-theme="light"] div[role="main"] #main form textarea:disabled {
+    background-color: #f8f8f8 !important;
+    color: #aaaaaa !important;
+    border: 1px solid #CFE3DC !important;
 }
