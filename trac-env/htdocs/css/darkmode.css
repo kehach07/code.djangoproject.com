@@ -23,6 +23,10 @@ html[data-theme="light"] {
     --code-fg: #0C4B33;
     --code-border: #EAEAEA;
     --selection: #C9F0DD;
+    --darkgreen: #0C4B33;
+    --formcss: #f7f7f0;
+    --admincss: #f7f7f0;
+    --code-button: #20AA76;
 }
 
 /* ==========================================================================
@@ -54,6 +58,10 @@ html[data-theme="dark"] {
     --code-fg: #f8f8f8;
     --code-border: #2b3a32;
     --selection: #0C4B33;
+    --darkgreen: #0C4B33;
+    --formcss: #0e1117;
+    --admincss: #0e1117;
+    --code-button: #20AA76;
 }
 
 /* Preference synchronization fallback matrix */
@@ -77,6 +85,10 @@ html[data-theme="dark"] {
         --code-fg: #f8f8f8;
         --code-border: #2b3a32;
         --selection: #0C4B33;
+        --darkgreen: #0C4B33;
+        --formcss: #0e1117;
+        --admincss: #0e1117;
+        --code-button: #20AA76;
     }
 }
 
@@ -470,4 +482,608 @@ html[data-theme="auto"] div.trac-grip {
 /* Light mode explicit fallback normalization reset */
 html[data-theme="light"] div.trac-grip {
     filter: none !important;
+}
+/* ==========================================================================
+   UNIVERSAL COMPONENT SURFACE RESOLUTION MATRICES
+   ========================================================================== */
+
+/* 1. Force the main content containers to blend cleanly into the main canvas background */
+body.mdzr-boxshadow,
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow [role="main"],
+body.mdzr-boxshadow .sidebar-right [role="main"],
+body.mdzr-boxshadow .container.sidebar-right,
+body.mdzr-boxshadow .container.full-width,
+body.mdzr-boxshadow div.container.sidebar-right,
+body.mdzr-boxshadow div.container.full-width,
+body.mdzr-boxshadow #banner {
+    /* Dynamically evaluates straight to #f8f8f8 in light mode and #121814 in dark mode */
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    
+    /* CRITICAL: Strips both the 1200px fake side margin shadow AND the legacy multi-drop pixel panels */
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 2. Sync the right-hand complementary sidebar context gutter layout */
+[role="complementary"],
+.sidebar-right [role="complementary"] {
+    background-color: var(--body-bg) !important;
+    background: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+}
+
+/* 3. Re-align the fluid full-width border components mapping */
+.full-width.container {
+    width: 100%;
+    padding: 0;
+    max-width: none;
+    border-bottom: 1px solid var(--hairline-color) !important;
+    background: var(--body-bg) !important;
+}
+/* ==========================================================================
+   CREATE TICKET SYSTEM LAYOUT STABILIZATION MATRIX
+   ========================================================================== */
+
+/* 1. Force the parent form wrappers, sub-tickets cards, and formatting panels 
+      to match your clean edge-to-edge body canvas background universally */
+div[role="main"] #main fieldset,
+#propertyform,
+#propertyform fieldset,
+.ticket #ticketbox,
+#content.ticket #propertyform,
+div.container.full-width form#propertyform,
+#content form fieldset,
+html body.mdzr-boxshadow form fieldset {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    border: 1px solid var(--hairline-color) !important;
+    box-shadow: none !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    padding: 6px 10px !important;
+}
+
+/* 2. Target the "I have files to attach to this ticket" row block explicitly 
+      to sweep out its custom hardcoded dark container properties */
+#content form div.field,
+#content form .field,
+form label[for="attachment"],
+html body.mdzr-boxshadow form div.field,
+#propertyform + label,
+#propertyform + div {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+}
+
+/* 3. Keep the text input textareas and field labels readable against the matched track background */
+#propertyform fieldset legend,
+#propertyform table.trac-properties th,
+#propertyform label {
+    color: var(--body-fg) !important;
+    background: transparent !important;
+}
+/* ==========================================================================
+   FINAL INTERFACE CANVAS SPACING CLEANUP
+   ========================================================================== */
+
+/* 1. Target the bottom extra margin rows and empty layout spacing wrappers */
+#content,
+.ticket,
+#main,
+div[role="main"],
+body.mdzr-boxshadow #main,
+body.mdzr-boxshadow #content,
+#content.ticket,
+div.container.full-width,
+div.container.sidebar-right {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+/* 2. Clear any rogue hardcoded dark background values on trailing paragraphs or notes */
+#content p.help,
+#content .trac-help,
+.trac-help,
+#main .backtotop,
+a.backtotop {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--text-light, #798780) !important;
+}
+
+/* 3. Sanitize the base html canvas track for unassigned lower workspace limits */
+html, 
+html[data-theme] {
+    background-color: var(--body-bg) !important;
+}
+/* ==========================================================================
+   TICKET PROPERTY MATRIX TEXT CONTRAST MATRICES
+   ========================================================================== */
+
+/* 1. Force the inner metadata th and missing status fields to adapt to the theme text token */
+#ticket table.properties > tbody > tr th,
+#ticket table.properties > tbody > tr th.missing,
+.ticket table.properties tbody tr th,
+#propertyform table.trac-properties td label,
+table.properties th {
+    /* Dynamically evaluates straight to #0C3C26 in light mode / #C1CAD2 in dark mode */
+    color: var(--body-fg) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+}
+
+/* 2. Target the description header, inline text tokens, and form contextual values */
+#ticket div.description h2,
+#ticket .properties td,
+.ticket table.properties td,
+#content.ticket #ticketbox h1,
+#ticket h1, #ticket h2 {
+    color: var(--body-fg) !important;
+}
+
+/* 3. Sync any static informational preview helper blocks text */
+#ticketbox .date,
+#ticketbox .author,
+.ticket .date {
+    color: var(--text-light, #798780) !important;
+}
+/* ==========================================================================
+   STANDARD FORM BUTTONS LIFE-CYCLE (PREVIEW / CREATE TICKET)
+   ========================================================================== */
+
+/* Target all standard form element controls EXCLUDING the theme toggle button */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    
+    /* Steady focus/active background colors linked to your primary green token */
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #44B78B) !important;
+        background-color: var(--primary, #44B78B) !important;
+        color: #000000 !important; /* Retains high-contrast black text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Explicit fallback capture for Trac's custom submission disabling behavior class */
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) !important;
+    background-color: var(--primary, #44B78B) !important;
+    color: #000000 !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON ENGINE - ISOLATED WHITE BORDER MATRIX
+   ========================================================================== */
+
+/* Base container rule ensuring complete transparency */
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* DEFEATS THE BLACK FLASH: Forces transparency even when actively clicked or focused */
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keeps the pure crisp white border glowing when clicked/held */
+    border: 1px solid #ffffff !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover & Active Display States - Matches your image reference precisely */
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; /* Pure white outline frame */
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* ==========================================================================
+   STANDARD FORM BUTTONS LIFE-CYCLE (PREVIEW / CREATE TICKET)
+   ========================================================================== */
+
+/* Target all standard form element controls EXCLUDING the theme toggle button */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"],
+#main button:not(#theme-toggle-btn) {
+    
+    /* Steady focus/active background colors linked to your primary green token */
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--primary, #0C4B33) !important;
+        background-color: var(--primary, #0C4B33) !important;
+        color: #000000 !important; /* Retains high-contrast black text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* Explicit fallback capture for Trac's custom submission disabling behavior class */
+input.trac-disable-on-submit:focus,
+input.trac-disable-on-submit:active {
+    background: var(--primary, #44B78B) !important;
+    background-color: var(--primary, #44B78B) !important;
+    color: #000000 !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON ENGINE - ISOLATED WHITE BORDER MATRIX
+   ========================================================================== */
+
+/* Base container rule ensuring complete transparency */
+#top button#theme-toggle-btn.theme-toggle,
+.theme-toggle,
+button.theme-toggle {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* DEFEATS THE BLACK FLASH: Forces transparency even when actively clicked or focused */
+#top button#theme-toggle-btn.theme-toggle:focus,
+#top button#theme-toggle-btn.theme-toggle:active,
+#top button#theme-toggle-btn.theme-toggle:hover:active,
+#top button#theme-toggle-btn.theme-toggle:focus:active {
+    background: transparent !important;
+    background-color: transparent !important;
+    /* Keeps the pure crisp white border glowing when clicked/held */
+    border: 1px solid #ffffff !important; 
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Hover & Active Display States - Matches your image reference precisely */
+#top button#theme-toggle-btn.theme-toggle:hover,
+#top button#theme-toggle-btn.theme-toggle.active {
+    background: rgba(255, 255, 255, 0.12) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid #ffffff !important; /* Pure white outline frame */
+    outline: none !important;
+    box-shadow: none !important;
+}
+/* ==========================================================================
+   BUTTON INTERACTION STATES & THEME TOGGLE ACTIVE STATE (FIXED)
+   ========================================================================== */
+
+/* 1. Standard Action Buttons (Preview, Create ticket, etc.) Lifecycle */
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"], 
+button,
+.trac-button,
+.buttons input,
+.inlinebuttons input,
+div[role="main"] #main button,
+div[role="main"] #main input[type="submit"] {
+    
+    &:focus,
+    &:active,
+    &:hover:active {
+        background: var(--darkgreen, #0C4B33) !important;
+        background-color: var(--darkgreen, #0C4B33) !important;
+        color: #000000 !important; /* Retains high-contrast black typography text */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+/* 2. THEME TOGGLE ACTIVE ENGINE - Replicating image_5bf6de.png exactly */
+.theme-toggle, 
+button.theme-toggle, 
+#top .theme-toggle {
+    /* Base button parameters remain clean and transparent */
+    transition: background-color 0.15s ease, border-color 0.15s ease !important;
+
+    /* When hovered, focused, or actively clicked, inject the crisp white square box frame */
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        background-color: rgba(255, 255, 255, 0.12) !important; /* Subtle inner highlight */
+        border: 1px solid #ffffff !important;                   /* Crisp flat white square outline */
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+/* ==========================================================================
+   WIKI EDIT INFORMATION & SYSTEM DIFF ENTRIES (THEME ISOLATED ENGINE)
+   ========================================================================== */
+
+/* 1. DARK MODE & AUTO-DARK ONLY: Transform blocks to match dark canvas depth */
+html[data-theme="dark"] body.mdzr-boxshadow,
+html[data-theme="dark"] table#info.trac-scroll,
+html[data-theme="dark"] table#info,
+html[data-theme="dark"] #info tbody tr,
+html[data-theme="dark"] #info th,
+html[data-theme="dark"] #info td {
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border-color: var(--hairline-color) !important;
+    box-shadow: none !important;
+}
+
+html[data-theme="dark"] .diff li.entry,
+html[data-theme="dark"] li.entry,
+html[data-theme="dark"] div#preview.wikipage .diff {
+    background: var(--white-color) !important; /* #0e1117 sheet block container */
+    background-color: var(--white-color) !important;
+    border: 1px solid var(--hairline-color) !important;
+    color: var(--body-fg) !important;
+    box-shadow: none !important;
+}
+
+/* 2. LIGHT MODE PROTECTION: Hard-locks Trac's default layout properties */
+html[data-theme="light"] table#info.trac-scroll,
+html[data-theme="light"] table#info,
+html[data-theme="light"] #info tbody tr,
+html[data-theme="light"] #info td {
+    background: #f7f7f0 !important; /* Preserves crisp legacy light off-white shade */
+    color: #0C3C26 !important;
+    border-color: #d7d7d7 !important;
+}
+
+html[data-theme="light"] #info th {
+    background: #f7f7f0 !important;
+    color: #0C3C26 !important;
+}
+
+html[data-theme="light"] .diff li.entry,
+html[data-theme="light"] li.entry {
+    background: #ffffff !important; /* Pristine bright white card canvas background */
+    border: 1px solid #d7d7d7 !important;
+    color: #0C3C26 !important;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05) !important;
+}
+/* ==========================================================================
+   WIKI PREVIEW MATRIX OVERRIDE (DARK MODE SPECIFIC - LIGHT MODE PROTECTED)
+   ========================================================================== */
+
+/* 1. Force the preview wrapper nodes to adapt directly to dark mode token variables */
+html[data-theme="dark"] div#preview.wikipage,
+html[data-theme="dark"] #preview.wikipage .trac-content,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft,
+html[data-theme="dark"] body.mdzr-boxshadow #preview.wikipage {
+    /* Seamlessly blends into the dark page backdrop (#121814) */
+    background: var(--body-bg) !important;
+    background-color: var(--body-bg) !important;
+    color: var(--body-fg) !important;
+    border: 1px solid var(--hairline-color) !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    border-radius: 4px !important;
+    padding: 20px !important;
+}
+
+/* 2. Sanitize embedded text strings and inner draft elements inside the dark preview box */
+html[data-theme="dark"] #preview.wikipage .trac-content p,
+html[data-theme="dark"] .wikipage .trac-content.trac-draft p {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: var(--body-fg) !important;
+}
+#prefs {
+    background: var(--formcss, #0e1117) !important;
+    border: 1px solid #d4d4d4;
+    border-radius: 11px;
+    box-shadow: .1em .3em .5em 0 #d4d4d4;
+    float: right;
+    font-size: .9em;
+    padding: .8em;
+    position: relative;
+    margin: 0 1em 1em;
+}
+/* ==========================================================================
+   ADMINISTRATION WORKSPACE NAVIGATION GUTTER (SYSTEM AWARE)
+   ========================================================================== */
+
+/* 1. UNIVERSAL COMPONENT STRUCTURE (Applies to all modes safely) */
+div#tabs, 
+#content.admin div#tabs {
+    border-radius: 4px !important;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure secondary sub-category labels remain cleanly spaced */
+div#tabs ul li a {
+    text-decoration: none !important;
+    padding: 4px 8px !important;
+    display: block;
+}
+
+/* 2. DARK MODE & SYSTEM AUTO-DARK CONDITION ENGINE */
+html[data-theme="dark"] div#tabs,
+html[data-theme="dark"] #content.admin div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] div#tabs,
+    html[data-theme="auto"] #content.admin div#tabs {
+        /* Syncs with the deep panel menu container block variable (#0e1117) */
+        background: var(--white-color) !important;
+        background-color: var(--white-color) !important;
+        border: 1px solid var(--hairline-color) !important;
+        box-shadow: none !important;
+        
+        /* Clear out the unstyled text categories heading blocks */
+        li {
+            color: var(--body-fg) !important;
+            background: transparent !important;
+        }
+        
+        /* Muted green for inactive links in dark state */
+        ul li a {
+            color: var(--text-l10, #93D7B7) !important;
+        }
+        
+        /* Active structural navigation item selection highlighted block state */
+        ul li.active {
+            background-color: rgba(68, 183, 139, 0.15) !important;
+            border-radius: 4px;
+            
+            a {
+                color: var(--primary, #44B78B) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}
+
+/* 3. EXPLICIT LIGHT MODE PROTECTION SYSTEM (Preserves legacy defaults untouched) */
+html[data-theme="light"] div#tabs,
+html[data-theme="light"] #content.admin div#tabs {
+    background: #f7f7f0 !important; /* Locks default legacy off-white tone */
+    border: 1px solid #d4d4d4 !important;
+    box-shadow: none !important;
+}
+html[data-theme="light"] div#tabs ul li.active a {
+    color: inherit !important;
+}
+#tabs {
+    background: var(--admincss, #f7f7f0);
+    border: 1px solid #d4d4d4;
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    /* box-shadow: .1em .3em .5em 0 #eee; */
+}
+div[role="main"] #main form input:disabled, div[role="main"] #main form textarea:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    background-color: var(--code-button, #f8f8f8) !important;
+}
+/* ==========================================================================
+   DYNAMIC TABS AND PREFERENCES NAVIGATION (ALL MODES OPTIMIZED)
+   ========================================================================== */
+
+/* 1. UNIVERSAL RULES - Structural definitions safely applied across all formats */
+#tabs, 
+div#tabs,
+.full-width.container #tabs,
+#content.prefs #tabs {
+    clear: left;
+    margin: 1em 0 2em;
+    padding: .5em 0 0;
+    float: left;
+    width: 12em;
+    border-radius: .4em;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure the layout labels and child nodes reset text inheritance correctly */
+#tabs li, 
+#tabs ul li a {
+    text-decoration: none !important;
+}
+
+/* 2. DARK MODE & AUTO SYSTEM SPECIFIC RULES */
+html[data-theme="dark"] #tabs,
+html[data-theme="dark"] div#tabs,
+@media (prefers-color-scheme: dark) {
+    html[data-theme="auto"] #tabs,
+    html[data-theme="auto"] div#tabs {
+        /* Syncs beautifully with your dark canvas token matrix */
+        background: var(--white-color) !important;
+        background-color: var(--white-color) !important;
+        border: 1px solid var(--hairline-color) !important;
+        box-shadow: none !important;
+
+        li {
+            color: var(--body-fg) !important;
+            background: transparent !important;
+        }
+
+        /* Set clean contrast for unselected list items */
+        li a {
+            color: var(--text-l10, #93D7B7) !important;
+        }
+
+        /* Style the active tab element indicator box */
+        li.active {
+            background-color: rgba(68, 183, 139, 0.15) !important;
+            border-radius: 4px;
+
+            a {
+                color: var(--primary, #44B78B) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+}
+
+/* 3. LIGHT MODE PROTECTION FALLBACKS */
+html[data-theme="light"] #tabs,
+html[data-theme="light"] div#tabs {
+    background: var(--admincss, #f7f7f0) !important;
+    border: 1px solid #d4d4d4 !important;
+    box-shadow: none !important;
+}
+
+
+/* ==========================================================================
+   DISABLED INTERFACE ELEMENT OVERRIDES (ALL MODES AWARE)
+   ========================================================================== */
+div[role="main"] #main form input:disabled, 
+div[role="main"] #main form textarea:disabled,
+#main form select:disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    
+    /* Dynamic evaluation across your target environments */
+    background-color: var(--code-bg, #0e1117) !important;
+    color: var(--text-light, #798780) !important;
+    border: 1px solid var(--hairline-color) !important;
+}
+
+/* Retain classic light form rules explicitly */
+html[data-theme="light"] div[role="main"] #main form input:disabled, 
+html[data-theme="light"] div[role="main"] #main form textarea:disabled {
+    background-color: #f8f8f8 !important;
+    color: #aaaaaa !important;
+    border: 1px solid #CFE3DC !important;
 }
