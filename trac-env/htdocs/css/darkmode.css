@@ -31,6 +31,11 @@ html[data-theme="light"] {
     --bg-color: #000000;
     --footer-text: #f8f8f8;
     --tablebg: #f7f7f7;
+    --tablehover: #eed;
+    --texttable: #000000;
+    --boxbg: #F1FFF7;
+    --boxtext: #CFE3DC;
+    --textmode: #333;
 }
 
 /* ==========================================================================
@@ -70,6 +75,11 @@ html[data-theme="dark"] {
     --bg-color: #ffffff;
     --footer-text: #f8f8f8;
     --tablebg: #0e1117;
+    --tablehover: #666;
+    --texttable: #ffffff;
+    --boxbg: #0e1117;
+    --boxtext: #CFE3DC;
+    --textmode: #ffffff;
 }
 
 /* Preference synchronization fallback matrix */
@@ -101,6 +111,11 @@ html[data-theme="dark"] {
         --bg-color: #ffffff;
         --footer-text: #f8f8f8;
         --tablebg: #0e1117;
+        --tablehover: #666;
+        --texttable: #ffffff;
+        --boxbg: #0e1117;
+        --boxtext: #CFE3DC;
+        --textmode: #ffffff;
     }
 }
 
@@ -1233,3 +1248,28 @@ table.listing tbody tr.odd {
     border-left: 1px solid var(--hairline-color);
     border-right: 1px solid var(--hairline-color);
 } */
+table.listing tbody tr:hover td {
+background: var(--tablehover, #eed) !important;
+color: var(--texttable, #ffffff) !important;
+}
+#environmentinfo table th {
+    background: var(--tablebg, #f7f7f7);
+    font-weight: bold;
+    white-space: nowrap;
+}
+#ticket #ticketbox {
+    background: var(--boxbg, #F1FFF7);
+    border-color: #CFE3DC;
+}
+#content.search .filters {
+    color:  var(--textmode, #333);
+    font-size: 85%;
+}
+.theme-toggle, button.theme-toggle, #top .theme-toggle {
+    &:hover, &:focus, &:active, &.active {
+        background-color: #0C4B33 !important;
+        border: 1px solid #ffffff !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
