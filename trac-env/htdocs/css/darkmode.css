@@ -546,10 +546,6 @@ html[data-theme="auto"] div.trac-grip {
 html[data-theme="light"] div.trac-grip {
     filter: none ;
 }
-/* ==========================================================================
-   UNIVERSAL COMPONENT SURFACE RESOLUTION MATRICES
-   ========================================================================== */
-
 /* 1. Force the main content containers to blend cleanly into the main canvas background */
 body.mdzr-boxshadow,
 body.mdzr-boxshadow #main,
