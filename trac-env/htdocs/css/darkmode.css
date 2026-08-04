@@ -371,9 +371,9 @@ div[role="main"] #main form select,
     border-radius: 4px ;
     
     /* Dynamic property lookups linked straight to your design variables matrix */
-    background-color: var(--white-color) ; /* #ffffff in Light Mode / #0e1117 in Dark Mode */
-    color: var(--body-fg) ;                /* #0C3C26 in Light Mode / #C1CAD2 in Dark Mode */
-    border: 1px solid var(--hairline-color) ; /* #CFE3DC in Light Mode / #2b3a32 in Dark Mode */
+    background-color: var(--white-color) ; 
+    color: var(--body-fg) ;                
+    border: 1px solid var(--hairline-color) ; 
     
     /* Clear native browser input rendering behavior overrides */
     -webkit-appearance: none ;
