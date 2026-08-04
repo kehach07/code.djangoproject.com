@@ -31,6 +31,7 @@ RUN apt-get update \
 # install python dependencies
 COPY ./requirements.txt ./requirements.txt
 COPY ./DjangoPlugin ./DjangoPlugin
+
 RUN apt-get update \
     && apt-get install --assume-yes --no-install-recommends \
         g++ \
