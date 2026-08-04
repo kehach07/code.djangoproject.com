@@ -13,6 +13,7 @@ for var in "${!TRAC_INI_@}"; do
     sed -i "s;^${var:9} = .*;${var:9} = ${!var};" /code/trac-env/conf/trac.ini
 done
 
+# Check if tracdjangoplugin is installed; if not, install it in editable mode so Trac can load our custom styles and scripts
 if ! python <<'PY'
 from importlib.metadata import entry_points
 
