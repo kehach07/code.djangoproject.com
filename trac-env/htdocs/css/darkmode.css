@@ -1238,12 +1238,6 @@ html[data-theme="light"] #ui-datepicker-div table.ui-datepicker-calendar tbody t
 table.listing tbody tr.odd {
     background-color: var(--tablebg, #f7f7f7);
 }
-/* table.listing td, table.tickets td, .tickets td, td.trac-colspan {
-    padding: 10px 12px;
-    color: var(--bg-color, #f7f7f7);;
-    border-left: 1px solid var(--hairline-color);
-    border-right: 1px solid var(--hairline-color);
-} */
 table.listing tbody tr:hover td {
 background: var(--tablehover, #eed) !important;
 color: var(--texttable, #ffffff) !important;
