@@ -32,6 +32,7 @@ html[data-theme="light"] {
     --boxtext: #CFE3DC;
     --textmode: #333;
     --link-color: #1a7a54; /* Updated: Darker green for > 4.5:1 contrast on white */
+    --color-mint-contrast: #c5e4d6;
 }
 
 /* Dark theme design tokens */
@@ -70,6 +71,7 @@ html[data-theme="dark"] {
     --boxbg: #0e1117;
     --boxtext: #CFE3DC;
     --textmode: #ffffff;
+    --color-mint-contrast: #c5e4d6;
 }
 
 /* Use dark theme colors when the system prefers dark mode */
@@ -106,6 +108,7 @@ html[data-theme="dark"] {
         --boxbg: #0e1117;
         --boxtext: #CFE3DC;
         --textmode: #ffffff;
+        --color-mint-contrast: #c5e4d6;
     }
 }
 
@@ -1131,7 +1134,7 @@ html[data-theme="dark"] .theme-icon-when-light {
 #top p.meta,
 #top .meta,
 p.meta {
-  color: #c5e4d6; /* High contrast light green/mint */
+  color: var(--color-mint-contrast, #c5e4d6); /* High contrast light green/mint */
 }
 
 #top nav ul li a,
@@ -1188,7 +1191,7 @@ a:visited {
 #banner #metanav a,
 .nav-login a,
 #top .meta a {
-  color: #c5e4d6;
+  color: var(--color-mint-contrast, #c5e4d6);
 }
 
 /* /Fix metanav (Login / Preferences) links for both themes */
@@ -1197,7 +1200,7 @@ a:visited {
 }
 
 html[data-theme="dark"] #metanav a {
-  color: #c5e4d6 !important;
+  color: var(--color-mint-contrast, #c5e4d6) !important;
 }
 
 /* // 1. Only top slogan/meta gets light text in the header */
@@ -1215,7 +1218,7 @@ html[data-theme="dark"] #metanav a {
 
 html[data-theme="dark"] #banner #metanav a,
 html[data-theme="dark"] #metanav a {
-  color: #c5e4d6;
+  color: var(--color-mint-contrast, #c5e4d6);
 }
 
 /* Form hint and helper links */
@@ -1257,7 +1260,7 @@ div[role="contentinfo"],
 html[data-theme="dark"] #content .trac-help,
 html[data-theme="dark"] .trac-help,
 html[data-theme="dark"] .trac-help strong {
-  color: #c1cad2;
+  color: var(--body-fg, #c1cad2);
 }
  /* Trac help bottom link underline */
 .trac-help a,
@@ -1305,7 +1308,7 @@ html[data-theme="dark"] {
   h1 .numrows,
   h2 .numrows,
   .numrows {
-    color: #c1cad2;
+    color: var(--body-fg, #c1cad2);
   }
 }
 /* Query filter inline button (-) styling and contrast */
@@ -1498,7 +1501,7 @@ html[data-theme="dark"] #tabs {
   border-right-color: #2b3a32;
 
   > ul > li {
-    color: #c1cad2;
+    color: var(--body-fg, #c1cad2);
   }
 
   ul li ul li {
@@ -1525,7 +1528,7 @@ html[data-theme="dark"] #tabs {
     border-right-color: #2b3a32;
 
     > ul > li {
-      color: #c1cad2;
+      color: var(--body-fg, #c1cad2);
     }
 
     ul li ul li {
@@ -1588,7 +1591,7 @@ html[data-theme="dark"] {
   span.hint,
   form.addnew p.hint,
   form.addnew span.hint {
-    color: #c1cad2;
+    color: var(--body-fg, #c1cad2);
   }
 }
 
@@ -1600,7 +1603,7 @@ html[data-theme="dark"] {
     span.hint,
     form.addnew p.hint,
     form.addnew span.hint {
-      color: #c1cad2;
+      color: var(--body-fg, #c1cad2);
     }
   }
 }
@@ -1626,7 +1629,7 @@ html[data-theme="dark"] {
   span.forbidden,
   a.forbidden:link,
   a.forbidden:visited {
-    color: #c1cad2;
+    color: var(--body-fg, #c1cad2);
   }
 }
 
@@ -1641,7 +1644,7 @@ html[data-theme="dark"] {
     span.forbidden,
     a.forbidden:link,
     a.forbidden:visited {
-      color: #c1cad2;
+      color: var(--body-fg, #c1cad2);
     }
   }
 }
@@ -1649,4 +1652,59 @@ html[data-theme="dark"] {
 #fieldset_action input#action_create_and_assign_reassign_owner:disabled,
 #action input#action_create_and_assign_reassign_owner:disabled {
   display: none;
+}
+/* Dark mode specific adjustments requested by Sarah */
+html[data-theme="dark"] {
+  /* 1. Foldable headers (Filters, Columns) matching navbar colors */
+  legend.foldable {
+    background-color: #c9f0dd !important;
+
+    a,
+    a:link,
+    a:visited {
+      color: #0c3c26 !important;
+      font-weight: 600;
+    }
+  }
+
+  /* 2. Unified muted grey color (#9f9d9d) for counts, help text, and download links */
+  .numrows,
+  #content.query .numrows,
+  p.trac-help,
+  div.trac-help,
+  #altlinks,
+  #altlinks li,
+  #altlinks a,
+  #altlinks a:link,
+  #altlinks a:visited {
+    color: #9f9d9d !important;
+  }
+}
+
+/* Auto theme matching dark mode */
+@media (prefers-color-scheme: dark) {
+  html[data-theme="auto"] {
+    legend.foldable {
+      background-color: #c9f0dd !important;
+
+      a,
+      a:link,
+      a:visited {
+        color: #0c3c26 !important;
+        font-weight: 600;
+      }
+    }
+
+    .numrows,
+    #content.query .numrows,
+    p.trac-help,
+    div.trac-help,
+    #altlinks,
+    #altlinks li,
+    #altlinks a,
+    #altlinks a:link,
+    #altlinks a:visited {
+      color: #9f9d9d !important;
+    }
+  }
 }
